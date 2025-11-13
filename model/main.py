@@ -828,11 +828,11 @@ def run_vqa_icl_evaluation(args, device):
     ]
 
     FIXED_QUESTIONS = [
+        "Which lung is affected by this abnormality?",
+        "What is the extent of infected region compared to total lung area?",
+        "What is the severity of disease based on the % of lung involvement?",
         "What abnormalities are detected in this image?",
         "What disease or condition is identified in this image?",
-        "Which lung is affected by this abnormality?",
-        "What is the severity of disease based on the % of lung involvement?",
-        "What is the extent of infected region compared to total lung area?",
         "What are the key findings from report?",
         "What additional observation about lung field, heart size or pleural space?",
         "What is final diagnostic decision?"
@@ -1073,11 +1073,11 @@ def run_predict_full_mode(args, device):
     print(f"🚀 Starting Full Prediction Mode on folder: {args.image_folder}")
 
     FIXED_QUESTIONS = [
+        "Which lung is affected by this abnormality?",
+        "What is the extent of infected region compared to total lung area?",
+        "What is the severity of disease based on the % of lung involvement?",
         "What abnormalities are detected in this image?",
         "What disease or condition is identified in this image?",
-        "Which lung is affected by this abnormality?",
-        "What is the severity of disease based on the % of lung involvement?",
-        "What is the extent of infected region compared to total lung area?",
         "What are the key findings from report?",
         "What additional observation about lung field, heart size or pleural space?",
         "What is final diagnostic decision?"
