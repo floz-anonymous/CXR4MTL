@@ -1,0 +1,5 @@
+Cardiomegaly 33 150 243
+Normal 76 175 80
+Pleural Effusion 156 39 176
+Pneumonia 255 152 0
+Tuberculosis 244 67 54
