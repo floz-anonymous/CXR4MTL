@@ -1,0 +1,582 @@
+[
+  {
+    "report": "Heart size is normal. The mediastinal and hilar contours are normal. The pulmonary vasculature is normal. Lungs are clear. No pleural effusion or pneumothorax is seen. There are no acute osseous abnormalities.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "Pneumonia"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Pneumonia"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Right lung"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "heart size normal, pleural effusion, pneumothorax"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "heart size normal, pleural effusion, lungs clear, mediastinum/hila normal"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Pneumonia"
+      }
+    ]
+  },
+  {
+    "report": "The heart is normal in size. The mediastinal and hilar contours are within normal limits. There is no pleural effusion or pneumothorax. There are calcified pleural plaques bilaterally.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "Tuberculosis"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Tuberculosis"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Right lung"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "heart size normal, pleural effusion, pneumothorax"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "heart size normal, pleural effusion, mediastinum/hila normal"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Tuberculosis"
+      }
+    ]
+  },
+  {
+    "report": "The heart is normal in size. The mediastinal and hilar contours are within normal limits. There is no pleural effusion or pneumothorax. The lungs are well expanded and clear.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "Cardiomegaly"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Cardiomegaly"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Left lung"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "heart size normal, pleural effusion, pneumothorax"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "heart size normal, pleural effusion, mediastinum/hila normal"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Cardiomegaly"
+      }
+    ]
+  },
+  {
+    "report": "The lungs are clear. The cardiomediastinal silhouette, hilar contours, and pleural surfaces are normal. No pneumothorax or pleural effusion. No fracture.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "pleural effusion, pneumothorax"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Normal"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Both lungs"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "pleural effusion, pneumothorax"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "pleural effusion, lungs clear, mediastinum/hila normal"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Normal"
+      }
+    ]
+  },
+  {
+    "report": "The heart is mildly enlarged. The mediastinal and hilar contours are normal. The lungs are clear. There is no pleural effusion or pneumothorax.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "Cardiomegaly"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Cardiomegaly"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Left lung"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "mild cardiomegaly, pleural effusion, pneumothorax"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "mild cardiomegaly, pleural effusion, lungs clear, mediastinum/hila normal"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Cardiomegaly"
+      }
+    ]
+  },
+  {
+    "report": "The heart is not enlarged. There is mild tortuosity of the thoracic aorta. There is no evidence of pneumothorax or pulmonary edema. There is a rounded density projecting over the right paratracheal region measuring 3.5 x 3.5 cm. There is no pleural effusion.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "Pneumonia"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Pneumonia"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Right lung"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "pleural effusion, pneumothorax"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "pleural effusion"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Pneumonia"
+      }
+    ]
+  },
+  {
+    "report": "The heart is normal in size. The mediastinal and hilar contours are normal. The lungs are clear. There is no pleural effusion or pneumothorax.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "Pneumonia"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Pneumonia"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Both lungs"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "heart size normal, pleural effusion, pneumothorax"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "heart size normal, pleural effusion, lungs clear, mediastinum/hila normal"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Pneumonia"
+      }
+    ]
+  },
+  {
+    "report": "There is a diffuse bilateral interstitial abnormality. There is no pleural effusion or pneumothorax. There is no cardiomegaly.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "Tuberculosis"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Tuberculosis"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Both lungs"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "cardiomegaly, pleural effusion, pneumothorax"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "cardiomegaly, pleural effusion"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Tuberculosis"
+      }
+    ]
+  },
+  {
+    "report": "The heart is not enlarged. The mediastinal and hilar contours are within normal limits. There is no evidence for pulmonary edema, pulmonary consolidation, pleural effusion or pneumothorax. There are bilateral breast implants.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "Cardiomegaly"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Cardiomegaly"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Left lung"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "pleural effusion, consolidation"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "pleural effusion, mediastinum/hila normal"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Cardiomegaly"
+      }
+    ]
+  },
+  {
+    "report": "The exam is limited by patient rotation. There are bilateral pleural effusions, moderate on the right and small on the left, with overlying atelectasis. There is mild pulmonary vascular congestion. No pneumothorax is identified. The mediastinal contours are normal. The heart is mildly enlarged.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "pleural effusion, atelectasis, mild cardiomegaly"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Normal"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Both lungs"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "mild cardiomegaly, pleural effusion, atelectasis"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "mild cardiomegaly, pleural effusion, mediastinal/hilar change"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Normal"
+      }
+    ]
+  },
+  {
+    "report": "The heart is normal in size. The mediastinal and hilar contours are normal. The lungs are clear. There is no pleural effusion or pneumothorax.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "pleural effusion, pneumothorax, heart size normal"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Normal"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Both lungs"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "heart size normal, pleural effusion, pneumothorax"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "heart size normal, pleural effusion, lungs clear, mediastinum/hila normal"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Normal"
+      }
+    ]
+  },
+  {
+    "report": "The heart is normal in size. The mediastinal and hilar contours are unremarkable. There is no evidence for pulmonary edema, pulmonary consolidation, pleural effusion or pneumothorax.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "Pneumonia"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Pneumonia"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Both lungs"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "heart size normal, pleural effusion, consolidation"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "heart size normal, pleural effusion, mediastinum/hila normal"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Pneumonia"
+      }
+    ]
+  },
+  {
+    "report": "The patient is status post fixation of the cervical spine with a metallic collar and cerclage wires. The cardiac and mediastinal contours are within normal limits. There is no evidence of pneumothorax. The lungs are clear without focal consolidation. There is no pleural effusion.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "pleural effusion, consolidation"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Normal"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Both lungs"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "pleural effusion, consolidation"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "pleural effusion, lungs clear, mediastinal/hilar change"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Normal"
+      }
+    ]
+  },
+  {
+    "report": "The heart is normal in size. The mediastinal and hilar contours are normal. The lungs are clear. There is no pleural effusion or pneumothorax.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "pleural effusion, pneumothorax, heart size normal"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Normal"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Both lungs"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "heart size normal, pleural effusion, pneumothorax"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "heart size normal, pleural effusion, lungs clear, mediastinum/hila normal"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Normal"
+      }
+    ]
+  },
+  {
+    "report": "The heart is normal in size. The mediastinal and hilar contours are within normal limits. There is no pleural effusion or pneumothorax. The lungs are well expanded and clear.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "pleural effusion, pneumothorax, heart size normal"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Normal"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Both lungs"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "heart size normal, pleural effusion, pneumothorax"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "heart size normal, pleural effusion, mediastinum/hila normal"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Normal"
+      }
+    ]
+  },
+  {
+    "report": "The heart is not enlarged. The hilar contours are normal. There is no evidence for pulmonary edema, pulmonary consolidation, pleural effusion, or pneumothorax.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "Tuberculosis"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Tuberculosis"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Both lungs"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "pleural effusion, consolidation"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "pleural effusion, mediastinal/hilar change"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Tuberculosis"
+      }
+    ]
+  },
+  {
+    "report": "Heart size is normal. The mediastinal and hilar contours are normal. The pulmonary vasculature is normal. Lungs are clear. No pleural effusion or pneumothorax is seen. There are no acute osseous abnormalities.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "Pneumonia"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Pneumonia"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Both lungs"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "heart size normal, pleural effusion, pneumothorax"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "heart size normal, pleural effusion, lungs clear, mediastinum/hila normal"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Pneumonia"
+      }
+    ]
+  },
+  {
+    "report": "The heart and mediastinal contours are within normal limits. The lungs are clear without focal consolidation, pleural effusion or pneumothorax.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "Tuberculosis"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Tuberculosis"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Both lungs"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "pleural effusion, consolidation"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "pleural effusion, lungs clear, mediastinal/hilar change"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Tuberculosis"
+      }
+    ]
+  },
+  {
+    "report": "The heart is normal in size. The hila are prominent. There is mild pulmonary edema. There is no focal consolidation, pneumothorax, or pleural effusion.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "Tuberculosis"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Tuberculosis"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Both lungs"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "heart size normal, pleural effusion, consolidation"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "heart size normal, pleural effusion"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Tuberculosis"
+      }
+    ]
+  },
+  {
+    "report": "The lungs are clear. The cardiomediastinal silhouette is normal. The hilar contours are normal. The pleural surfaces are normal without effusion or pneumothorax.",
+    "qas": [
+      {
+        "q": "What abnormalities are detected in this image?",
+        "a": "pneumothorax"
+      },
+      {
+        "q": "What disease or condition is identified in this image?",
+        "a": "Normal"
+      },
+      {
+        "q": "Which lung is affected by this abnormality?",
+        "a": "Both lungs"
+      },
+      {
+        "q": "What are the key findings from report?",
+        "a": "pneumothorax"
+      },
+      {
+        "q": "What additional observation about lung field, heart size or pleural space?",
+        "a": "lungs clear, mediastinum/hila normal"
+      },
+      {
+        "q": "What is final diagnostic decision?",
+        "a": "Normal"
+      }
+    ]
+  }
+]
