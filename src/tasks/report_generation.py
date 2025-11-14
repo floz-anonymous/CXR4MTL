@@ -46,6 +46,10 @@ def run_rrg_mode(args, device):
         test_loader = DataLoader(test_ds, batch_size=args.batch_size)
 
         if 'train' in args.mode:
+            if os.path.exists(args.seg_encoder_checkpoint_path):
+                print(f"Loading pre-trained encoder from {args.seg_encoder_checkpoint_path}")
+                model.encoder.load_state_dict(torch.load(args.seg_encoder_checkpoint_path, map_location=device))
+            for p in model.encoder.parameters(): p.requires_grad = False
             optimizer = optim.Adam(
                 filter(lambda p: p.requires_grad, model.parameters()), lr=args.lr
             )
@@ -82,3 +86,4 @@ def run_rrg_mode(args, device):
                 tokenizer, args.max_len, class_label_idx=class_idx
             )
             print(f"Generated Report: {report}")
+
