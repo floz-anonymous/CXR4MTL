@@ -40,6 +40,10 @@ def run_class_mode(args, device):
         test_loader = DataLoader(test_ds, batch_size=args.batch_size)
 
         if 'train' in args.mode:
+            if os.path.exists(args.seg_encoder_checkpoint_path):
+                print(f"Loading pre-trained encoder from {args.seg_encoder_checkpoint_path}")
+                model.encoder.load_state_dict(torch.load(args.seg_encoder_checkpoint_path, map_location=device))
+            for p in model.encoder.parameters(): p.requires_grad = False
             optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
             criterion = nn.CrossEntropyLoss()
             scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', patience=args.patience)
@@ -64,3 +68,4 @@ def run_class_mode(args, device):
         model.load_state_dict(torch.load(args.class_checkpoint_path, map_location=device))
         predict_single_image_class(model, args.image_to_predict_path, device,
                                 (args.img_size, args.img_size), class_labels)
+
