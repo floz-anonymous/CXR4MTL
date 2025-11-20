@@ -223,23 +223,196 @@ class SAMEncoder(nn.Module):
         for block in self.blocks: x = block(x)
         return self.norm(x)
 
+class CrossAttentionMixing(nn.Module):
+    def __init__(self, local_dim, global_dim, output_dim, num_heads=8):
+        super().__init__()
+        self.output_dim = output_dim
+        self.num_heads = num_heads
+        self.head_dim = output_dim // num_heads
+        
+        self.local_proj = nn.Linear(local_dim, output_dim)
+        self.global_proj = nn.Linear(global_dim, output_dim)
+        
+        self.local_to_global_q = nn.Linear(output_dim, output_dim)
+        self.global_to_local_k = nn.Linear(output_dim, output_dim)
+        self.global_to_local_v = nn.Linear(output_dim, output_dim)
+        
+        self.global_to_local_q = nn.Linear(output_dim, output_dim)
+        self.local_to_global_k = nn.Linear(output_dim, output_dim)
+        self.local_to_global_v = nn.Linear(output_dim, output_dim)
+        
+        self.dropout = nn.Dropout(0.1)
+        self.scale = (self.head_dim) ** -0.5
+        
+    def forward(self, local_feat, global_feat):
+        B, N_local, _ = local_feat.shape
+        B, N_global, _ = global_feat.shape
+        
+        q_l2g = self.local_to_global_q(local_feat).view(B, N_local, self.num_heads, self.head_dim).transpose(1, 2)
+        k_g2l = self.global_to_local_k(global_feat).view(B, N_global, self.num_heads, self.head_dim).transpose(1, 2)
+        v_g2l = self.global_to_local_v(global_feat).view(B, N_global, self.num_heads, self.head_dim).transpose(1, 2)
+        
+        attn_l2g = (q_l2g @ k_g2l.transpose(-2, -1)) * self.scale
+        attn_l2g = attn_l2g.softmax(dim=-1)
+        attn_l2g = self.dropout(attn_l2g)
+        
+        enhanced_local = (attn_l2g @ v_g2l).transpose(1, 2).reshape(B, N_local, self.output_dim)
+        
+        q_g2l = self.global_to_local_q(global_feat).view(B, N_global, self.num_heads, self.head_dim).transpose(1, 2)
+        k_l2g = self.local_to_global_k(local_feat).view(B, N_local, self.num_heads, self.head_dim).transpose(1, 2)
+        v_l2g = self.local_to_global_v(local_feat).view(B, N_local, self.num_heads, self.head_dim).transpose(1, 2)
+        
+        attn_g2l = (q_g2l @ k_l2g.transpose(-2, -1)) * self.scale
+        attn_g2l = attn_g2l.softmax(dim=-1)
+        attn_g2l = self.dropout(attn_g2l)
+        
+        enhanced_global = (attn_g2l @ v_l2g).transpose(1, 2).reshape(B, N_global, self.output_dim)
+        
+        return enhanced_local, enhanced_global
+
+class SpatialAttentionGate(nn.Module):
+    def __init__(self, in_channels):
+        super().__init__()
+        self.conv1 = nn.Conv2d(in_channels, in_channels // 8, 1)
+        self.conv2 = nn.Conv2d(in_channels // 8, 1, 1)
+        self.sigmoid = nn.Sigmoid()
+        
+    def forward(self, x):
+        attention = self.conv1(x)
+        attention = F.relu(attention)
+        attention = self.conv2(attention)
+        attention = self.sigmoid(attention)
+        return x * attention
+
+class ChannelAttentionGate(nn.Module):
+    def __init__(self, in_channels, reduction=16):
+        super().__init__()
+        self.avg_pool = nn.AdaptiveAvgPool2d(1)
+        self.max_pool = nn.AdaptiveMaxPool2d(1)
+        
+        self.fc = nn.Sequential(
+            nn.Linear(in_channels, in_channels // reduction),
+            nn.ReLU(),
+            nn.Linear(in_channels // reduction, in_channels)
+        )
+        self.sigmoid = nn.Sigmoid()
+        
+    def forward(self, x):
+        B, C, H, W = x.shape
+        
+        avg_out = self.fc(self.avg_pool(x).view(B, C))
+        max_out = self.fc(self.max_pool(x).view(B, C))
+        
+        attention = self.sigmoid(avg_out + max_out).view(B, C, 1, 1)
+        return x * attention
+
 class EnhancedSummaryMixing(nn.Module):
     def __init__(self, local_dim=512, global_dim=768, output_dim=512):
         super().__init__()
+        self.local_dim = local_dim
+        self.global_dim = global_dim
         self.output_dim = output_dim
-        self.local_proj = nn.Sequential(nn.Conv2d(local_dim, output_dim, kernel_size=1), nn.BatchNorm2d(output_dim), nn.ReLU())
-        self.global_proj = nn.Sequential(nn.Linear(global_dim, output_dim), nn.LayerNorm(output_dim), nn.ReLU())
-        self.fusion_conv = nn.Sequential(nn.Conv2d(output_dim * 2, output_dim, kernel_size=3, padding=1), nn.BatchNorm2d(output_dim), nn.ReLU())
-        self.fusion_weight = nn.Parameter(torch.tensor(0.5))
-
+        
+        self.local_proj = nn.Sequential(
+            nn.Linear(local_dim, output_dim),
+            nn.LayerNorm(output_dim),
+            nn.ReLU()
+        )
+        self.global_proj = nn.Sequential(
+            nn.Linear(global_dim, output_dim),
+            nn.LayerNorm(output_dim),
+            nn.ReLU()
+        )
+        
+        self.cross_attention = CrossAttentionMixing(
+            local_dim=output_dim,
+            global_dim=output_dim,
+            output_dim=output_dim,
+            num_heads=8
+        )
+        
+        self.fusion_net = nn.Sequential(
+            nn.Linear(output_dim * 2, output_dim * 2),
+            nn.LayerNorm(output_dim * 2),
+            nn.GELU(),
+            nn.Dropout(0.1),
+            nn.Linear(output_dim * 2, output_dim),
+            nn.LayerNorm(output_dim),
+            nn.GELU()
+        )
+        
+        self.spatial_mix = nn.Sequential(
+            nn.Conv2d(output_dim * 2, output_dim, 3, 1, 1),
+            nn.BatchNorm2d(output_dim),
+            nn.ReLU(),
+            nn.Conv2d(output_dim, output_dim, 3, 1, 1),
+            nn.BatchNorm2d(output_dim),
+            nn.ReLU()
+        )
+        
+        self.spatial_attention = SpatialAttentionGate(output_dim)
+        self.channel_attention = ChannelAttentionGate(output_dim)
+        
+        self.multiscale_conv = nn.ModuleList([
+            nn.Conv2d(output_dim, output_dim // 4, 1),  
+            nn.Conv2d(output_dim, output_dim // 4, 3, 1, 1), 
+            nn.Conv2d(output_dim, output_dim // 4, 5, 1, 2), 
+            nn.Conv2d(output_dim, output_dim // 4, 7, 1, 3), 
+        ])
+        
+        self.final_conv = nn.Sequential(
+            nn.Conv2d(output_dim, output_dim, 3, 1, 1),
+            nn.BatchNorm2d(output_dim),
+            nn.ReLU(),
+            nn.Conv2d(output_dim, output_dim, 1),
+            nn.BatchNorm2d(output_dim)
+        )
+        
+        self.alpha = nn.Parameter(torch.ones(1))
+        self.beta = nn.Parameter(torch.ones(1))
+        
     def forward(self, local_features, global_features):
+        
         B, C, H, W = local_features.shape
-        local_proj = self.local_proj(local_features)
-        global_proj = self.global_proj(global_features[:, 0, :])
-        global_expanded = global_proj.unsqueeze(-1).unsqueeze(-1).expand(B, self.output_dim, H, W)
-        combined = torch.cat([local_proj, global_expanded], dim=1)
-        fused = self.fusion_conv(combined)
-        return self.fusion_weight * local_proj + (1 - self.fusion_weight) * fused
+        
+        local_flat = local_features.view(B, C, H * W).transpose(1, 2)  
+        
+        local_proj = self.local_proj(local_flat) 
+        global_proj = self.global_proj(global_features)  
+        
+        if local_proj.shape[1] != global_proj.shape[1]:
+            global_resized = F.adaptive_avg_pool1d(
+                global_proj.transpose(1, 2), local_proj.shape[1]
+            ).transpose(1, 2)
+        else:
+            global_resized = global_proj
+        
+        enhanced_local, enhanced_global = self.cross_attention(local_proj, global_resized)
+        
+        fused_features = torch.cat([enhanced_local, enhanced_global], dim=-1)
+        fused_features = self.fusion_net(fused_features)
+        
+        fused_spatial = fused_features.transpose(1, 2).view(B, self.output_dim, H, W)
+        local_spatial = local_proj.transpose(1, 2).view(B, self.output_dim, H, W)
+        
+        concat_features = torch.cat([fused_spatial, local_spatial], dim=1)
+        mixed_spatial = self.spatial_mix(concat_features)
+        
+        multiscale_features = []
+        for conv in self.multiscale_conv:
+            multiscale_features.append(conv(mixed_spatial))
+        
+        multiscale_output = torch.cat(multiscale_features, dim=1)
+        
+        attended_features = self.spatial_attention(multiscale_output)
+        attended_features = self.channel_attention(attended_features)
+        
+        output = self.final_conv(attended_features)
+        
+        residual = self.alpha * fused_spatial + self.beta * local_spatial
+        final_output = output + residual
+        
+        return final_output
 
 class AttentionGate(nn.Module):
     def __init__(self, F_g, F_l, F_int):
@@ -780,4 +953,5 @@ class UnifiedMultiTaskModel(nn.Module):
             return output
 
         else:
+
             raise ValueError(f"Unknown mode: {mode}")
